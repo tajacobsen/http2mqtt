@@ -1,13 +1,11 @@
 v1:
-- Sanitize input: only allowed topics
-- Sanitize input: format of payload
 - Readme
-- client_id as conf parameter
 - default conf parameters (ca_certs)
 - commit empty (example) configuration
 
 v2:
 - SSL
+- fall back on sanitized input (isalnum() for both payload and topic)
 
 v3:
 - Authentication
