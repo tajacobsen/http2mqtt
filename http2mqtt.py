@@ -33,22 +33,25 @@ class HTTP2MQTT(object):
 
 if __name__ == "__main__":
     config = configparser.ConfigParser()
-    config.read("config.ini")
+    config.read("/config/config.ini")
 
     username  = config['mqtt-server']['username']
     password  = config['mqtt-server']['password']
-    host      = config['mqtt-server']['host']
-    port      = int(config['mqtt-server']['port'])
+    mqtt_host = config['mqtt-server']['host']
+    mqtt_port = int(config['mqtt-server']['port'])
     client_id = config['mqtt-server']['client_id']
     ca_certs  = config['mqtt-server']['ca_certs']
 
-    allowed_topics = config['http']['allowed_topics'].split(';')
+    http_port        = int(config['http']['port'])
+    allowed_topics   = config['http']['allowed_topics'].split(';')
     allowed_payloads = config['http']['allowed_payloads'].split(';')
 
     mqtt_client = mqtt.Client(client_id=client_id)
     mqtt_client.username_pw_set(username, password=password)
     mqtt_client.tls_set(ca_certs=ca_certs)
-    mqtt_client.connect(host, port, 60)
+    mqtt_client.connect(mqtt_host, mqtt_port, 60)
+
+    cherrypy.config.update({'server.socket_port': http_port})
 
     cherrypy.quickstart(
             HTTP2MQTT(
