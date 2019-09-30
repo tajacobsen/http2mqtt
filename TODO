@@ -1,0 +1,13 @@
+v1:
+- Sanitize input: only allowed topics
+- Sanitize input: format of payload
+- Readme
+- client_id as conf parameter
+- default conf parameters (ca_certs)
+- commit empty (example) configuration
+
+v2:
+- SSL
+
+v3:
+- Authentication
