@@ -1,8 +1,6 @@
-v1:
-- default conf parameters (ca_certs)
-- commit empty (example) configuration
 
 v2:
 - SSL
 - Authentication (api_key parameter)
 - fall back on sanitized input (isalnum() for both payload and topic)
+- default conf parameters (ca_certs)
