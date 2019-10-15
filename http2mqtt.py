@@ -51,6 +51,7 @@ if __name__ == "__main__":
     mqtt_client.tls_set(ca_certs=ca_certs)
     mqtt_client.connect(mqtt_host, mqtt_port, 60)
 
+    cherrypy.config.update({'server.socket_host': '0.0.0.0'})
     cherrypy.config.update({'server.socket_port': http_port})
 
     cherrypy.quickstart(
